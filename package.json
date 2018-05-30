@@ -1,0 +1,26 @@
+{
+  "name": "tekken-ranking-chart",
+  "version": "1.0.0",
+  "description": "철권 랭킹표 version 1.!",
+  "main": "index.js",
+  "scripts": {
+    "dev": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/childrrenOfCrong/tekken-ranking-chart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/childrrenOfCrong/tekken-ranking-chart/issues"
+  },
+  "homepage": "https://github.com/childrrenOfCrong/tekken-ranking-chart#readme",
+  "dependencies": {
+    "bulma": "^0.7.1"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.0"
+  }
+}
