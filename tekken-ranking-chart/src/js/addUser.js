@@ -4,6 +4,7 @@ const addUserBtn = document.querySelector(".add-user-btn");
 
 console.log(addUserBtn)
 addUserBtn.addEventListener("click", e => addUser(e));
+addUserInput.addEventListener("keydown", e => handleKeydown(e));
 const tableTemplate= (userName, id)=> `<tr>
 <th>1</th>
 <td>
@@ -17,7 +18,10 @@ const tableTemplate= (userName, id)=> `<tr>
 <td><a class="button is-danger ${id}">패 추가</a></td>
 </tr>`;
 
-
+const handleKeydown = (e)=>{
+  if(e.keyCode!==13) return 
+  return addUser();
+}
 
 const addUser = () => {
   const userName = addUserInput.value.trim()
