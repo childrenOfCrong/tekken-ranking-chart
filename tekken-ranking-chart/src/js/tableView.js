@@ -4,15 +4,23 @@ class TableView {
   }
   orderByRank(){
     const tableRows = this.table.querySelectorAll('tr')
-    tableRows.sort((a,b)=> {
-      const rateElA = a.document.querySelector('.rate-count')
-      const rateElB = a.document.querySelector('.rate-count')
-      return Number(rateElA.innerHTML)>Number(rateElB.innerHTML)
+    // debugger;
+    const sortedTableTemplate =[...tableRows].sort((a,b)=> {
+      const rateElA = a.querySelector('.rate-count')
+      const rateElB = b.querySelector('.rate-count')
+      if((+rateElA.innerHTML) > (+rateElB.innerHTML)) return 1;
+      if((+rateElA.innerHTML) < (+rateElB.innerHTML)) return -1;
+      return 0;
     })
-    this.table.innerHTML = tableRows;
+    .reduce((ac,c)=>{
+      ac+=`<tr>${c.innerHTML}</tr>}`
+      return ac
+    },'')
+    this.table.innerHTML = sortedTableTemplate;
   }
 }
 
 
 
-const tableView = new TableView('.table')
+const tableView = new TableView('tbody')
+// tableView.orderByRank();
