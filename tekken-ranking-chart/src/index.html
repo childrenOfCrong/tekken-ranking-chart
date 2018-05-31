@@ -67,17 +67,17 @@
     </tfoot>
     <tbody class="player-states">
       <template id="player-template">
-        <tr>
+        <tr id="player-{{id}}">
           <th>1</th>
           <td>
             <a href="#">{{name}}</a>
           </td>
-          <td class="count">{{win}}+{{lose}}</td>
+          <td class="count">{{count}}</td>
           <td class="win-count">{{win}}</td>
           <td class="lose-count">{{lose}}</td>
-          <td class="rate-count">{{win}}/({{win}}+{{lose}})</td>
-          <td><a class="win-btn button is-primary">승 추가</a></td>
-          <td><a class="lose-btn button is-danger">패 추가</a></td>
+          <td class="rate-count">{{rate}}</td>
+          <td><a id="win-btn-{{id}}" class="win-btn button is-primary">승 추가</a></td>
+          <td><a id="lose-btn-{{id}}" class="lose-btn button is-danger">패 추가</a></td>
         </tr>
       </template>
     </tbody>
@@ -98,10 +98,9 @@
 
 </body>
 <script src="./js/data.js"></script>
-<script src="./js/template.js"></script>
 <script src="./js/addUser.js"></script>
-<script src="./js/win.js"></script>
 <script src="./js/tableView.js"></script>
+<script src="./js/template.js"></script>
 <script src="./js/app.js"></script>
 
 </html>

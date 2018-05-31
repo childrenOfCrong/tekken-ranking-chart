@@ -6,7 +6,6 @@ class TableView {
   }
   init(){
     this.orderBtn =this.table.querySelector('.order-by-rank')
-    debugger;
     this.orderBtn.addEventListener('click', e => this.orderByRank())
   }
   orderByRank(){
