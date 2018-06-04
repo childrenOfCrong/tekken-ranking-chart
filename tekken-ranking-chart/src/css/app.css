@@ -13,3 +13,7 @@
 .order-btn {
   color: #363636;
 }
+
+.control {
+  display: flex;
+}

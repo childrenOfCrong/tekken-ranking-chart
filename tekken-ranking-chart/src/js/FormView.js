@@ -1,13 +1,16 @@
 class FormView {
   constructor(selector){
     this.form = qs(selector)
-    this.init();
+    this.addBtn = qs('.add-user-btn');
     this.inputEl = qs('input')
-    this.inputEl.focus();
+    this.init();
     this.sendNewUser = null;
+    
   }
   init(){
     $on(this.form, 'submit', e=>this.handleSubmit(e))
+    $on(this.addBtn, 'click', e=>this.handleSubmit(e))
+    this.inputEl.focus();
   }
   handleSubmit(e){
     e.preventDefault();
