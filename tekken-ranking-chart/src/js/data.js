@@ -14,29 +14,3 @@ const playersList = [
   { "id": 13, "name": "팀", "win": 0, "lose": 0 },
 ]
 
-class GameResults {
-  constructor(playersList) {
-    this.playersList = playersList;
-    this.gameResults = this.makeResults(this.copyData());
-  }
-
-  copyData() {
-    return this.playersList.slice();
-  }
-
-
-  makeResults(playersList) {
-    return this.playersList.reduce((acc, crr) => {
-      acc[crr.id] = {}
-      acc[crr.id].id = crr.id;
-      acc[crr.id].name = crr.name;
-      acc[crr.id].win = 0;
-      acc[crr.id].lose = 0;
-      acc[crr.id].count = 0;
-      acc[crr.id].rate = 0;
-      acc[crr.id].rank = 0;
-      return acc;
-    }, {})
-  }
-}
-const gameResults = new GameResults(playersList)
