@@ -4,6 +4,8 @@ class GameResultsModel {
     this.gameResults = this.getInitResult(this.copyData());
     this.notifyUpdate = null;
     this.notifyUpdateOrder = null;
+    this.notifyUpdateNewUser = null;
+    this.currentId = this.playersList.length;
   }
   copyData() {
     return this.playersList.slice();
@@ -29,16 +31,10 @@ class GameResultsModel {
     return this.gameResults
   }
   updateResult(id,type){
-    if(type==='win'){
-      this.gameResults[id].win++;
-      this.gameResults[id].count++;
-      this.gameResults[id].rate = Number((this.gameResults[id].win / this.gameResults[id].count * 100).toFixed(0))
-    }
-    else{
-      this.gameResults[id].lose++;
-      this.gameResults[id].count++;
-      this.gameResults[id].rate = Number((this.gameResults[id].win / this.gameResults[id].count * 100).toFixed(0))
-    }
+    if(type==='win') this.gameResults[id].win++;
+    else this.gameResults[id].lose++;
+    this.gameResults[id].count++;
+    this.gameResults[id].rate = Number((this.gameResults[id].win / this.gameResults[id].count * 100).toFixed(0))
     return this.notifyUpdate(id, this.gameResults[id])
   }
   getOrder(order){
@@ -49,5 +45,27 @@ class GameResultsModel {
     }
   )
     this.notifyUpdateOrder(oredered)
+  }
+  addCurrentId(){
+    return this.currentId+=1
+  }
+  getUser(newUser){
+    this.addCurrentId();
+    const addedUserInfo = {
+      [this.currentId]: {
+      id: this.currentId,
+      name: newUser,
+      win: 0,
+      lose: 0,
+      count: 0,
+      rate: 0,
+      rank: 0,
+    }
+  }
+    this.gameResults = {
+      ...this.gameResults,
+      ...addedUserInfo,
+    }
+    this.notifyUpdateNewUser(addedUserInfo[this.currentId])
   }
 }

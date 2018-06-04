@@ -17,6 +17,7 @@
 class TableView {
   constructor(selector){
     this.table = qs(selector)
+    this.body = qs('tbody',this.table)
     this.orderBtn = null;
     this.sendClickedBtn = null;
     this.sendOrderBtnClicked = null;
@@ -38,39 +39,23 @@ class TableView {
     const getId = Number(t.id.split('-')[2]);
     return this.sendClickedBtn(getId, type)
   }
-  orderByRank(){
-    const body = this.table.querySelector('tbody')
-    const tableRows = body.querySelectorAll('tr')
-    const sortedTableTemplate =[...tableRows].sort((a,b)=> {
-      const rateElA = a.querySelector('.rate-count')
-      const rateElB = b.querySelector('.rate-count')
-      if((+rateElA.innerHTML) > (+rateElB.innerHTML)) return -1;
-      if((+rateElA.innerHTML) < (+rateElB.innerHTML)) return 1;
-      return 0;
-    })
-    .reduce((ac,c)=>{
-      ac+=`<tr>${c.innerHTML}</tr>`
-      return ac
-    },'')
-    body.innerHTML = sortedTableTemplate;
-  }
   bindRendering(list){
-    const body = qs('tbody',this.table)
     const tableCells = Object.values(list).reduce((ac, c)=> {
       return ac+=tableTemplate(c)
     }, '')
-    body.innerHTML = tableCells
+    this.body.innerHTML = tableCells
   }
   reRender(id, updatedData){
     const willUpdateEl = qs(`#player-${id}`,this.table)
     willUpdateEl.innerHTML = tableTemplate(updatedData)
   }
   orderUpdate(ordered){
-    const body = qs('tbody',this.table)
-    console.dir(ordered)
-    body.innerHTML = ordered.reduce((ac,c)=> {
+    this.body.innerHTML = ordered.reduce((ac,c)=> {
       return ac+=tableTemplate(c)
     },'')
+  }
+  updateAddedUser(addedUserInfo){
+    this.body.insertAdjacentHTML('beforeend', tableTemplate(addedUserInfo))
   }
 }
 
